@@ -31,6 +31,13 @@ from elecciones.models import (
 from elecciones.proyecciones import Proyecciones, create_sumarizador
 from elecciones.sumarizador import NIVEL_DE_AGREGACION
 
+from django import template
+
+register = template.Library()
+
+@register.filter
+def https(value):
+    return value.replace("http://", "https://")
 
 @login_required
 @user_passes_test(lambda u: u.fiscal.esta_en_grupo('visualizadores'), login_url='permission-denied')
