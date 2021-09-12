@@ -519,7 +519,7 @@ class MesaCategoria(models.Model):
     ]
 
     status = StatusField(default=STATUS.sin_cargar)
-    mesa = models.ForeignKey('Mesa', on_delete=models.CASCADE)
+    mesa = models.ForeignKey('Mesa', on_delete=models.CASCADE, related_name='mesacategoria')
     categoria = models.ForeignKey('Categoria', on_delete=models.CASCADE)
 
     # Carga que es representativa del estado actual.

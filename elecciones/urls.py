@@ -1,15 +1,23 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
+from django.urls import include
+
 from . import views, data_views
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.conf import settings
+from rest_framework import routers
 
 cached = cache_page(300)
 
+router = routers.DefaultRouter()
+router.register(r'get_dashboard', views.mesas_dashboard)
+
 multiplicador_testing = 0 if settings.TESTING else 1
 
+
 urlpatterns = [
+    url('', include(router.urls)),
     url('^escuelas.geojson$', cached(
         views.LugaresVotacionGeoJSON.as_view()), name='geojson'),
     url(r'^escuelas/(?P<pk>\d+)$',

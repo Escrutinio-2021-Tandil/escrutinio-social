@@ -1,8 +1,8 @@
 from collections import defaultdict
 from rest_framework import serializers
 
-from adjuntos.models import Attachment
-from elecciones.models import Categoria, Opcion
+from adjuntos.models import Attachment, Identificacion
+from elecciones.models import Categoria, Opcion, MesaCategoria, Mesa
 
 
 class ActaSerializer(serializers.Serializer):
@@ -73,3 +73,33 @@ class OpcionSerializer(serializers.Serializer):
     nombre = serializers.CharField()
     nombre_corto = serializers.CharField()
     codigo = serializers.CharField()
+
+
+class MesaCategoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MesaCategoria
+        fields = ('status', 'categoria')
+
+
+class IdentificadasSerializer(serializers.ListSerializer):
+
+    def to_representation(self, data):
+        data = data.exclude(attachments=None)
+        return super(IdentificadasSerializer, self).to_representation(data)
+
+
+class MesaDasboardSerializer(serializers.ModelSerializer):
+    mesacategoria = MesaCategoriaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Mesa
+        list_serializer_class = IdentificadasSerializer
+        fields = ('numero', 'mesacategoria')
+
+
+class IdentificacionSerializer(serializers.ModelSerializer):
+    identificaciones = MesaDasboardSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Identificacion
+        fields = ('identificaciones',)
