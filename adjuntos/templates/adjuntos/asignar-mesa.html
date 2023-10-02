@@ -167,7 +167,7 @@
 {% block right-panel %}
     <div class="acta card">
         <div class="card-content">
-            <img id="target" src="{{ attachment.foto.thumbnail.960x.url }}">
+		<img id="target" crossorigin="anonymous" src="{{ attachment.foto.thumbnail.960x.url }}">
 
             <script src="{% static 'js/fabric.js' %}"></script>
             <script src="{% static 'js/darkroom.js' %}"></script>

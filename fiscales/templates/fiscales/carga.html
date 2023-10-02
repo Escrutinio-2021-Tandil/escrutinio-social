@@ -164,7 +164,7 @@ $(document).ready(function(){
     <div class="card small info">
       Carga de <strong>{{ categoria }}</strong>
       {% if categoria.categoria_general.foto_ejemplo %}
-        <img class="responsive-img" src="{{ categoria.categoria_general.foto_ejemplo.thumbnail.600x.url }}">
+        <img class="responsive-img" crossorigin="anonymous" src="{{ categoria.categoria_general.foto_ejemplo.thumbnail.600x.url }}">
       {% endif %}
     </div>
     <div id="cambio-categoria" class="modal">
@@ -172,7 +172,7 @@ $(document).ready(function(){
         <h4>Atención: cambio de categoría</h4>
         <p>Vamos a continuar cargando <strong>{{ categoria }}</strong>.</p>
         {% if categoria.categoria_general.foto_ejemplo %}
-        <img class="responsive-img" src="{{ categoria.categoria_general.foto_ejemplo.thumbnail.600x.url }}">
+        <img class="responsive-img" crossorigin="anonymous" src="{{ categoria.categoria_general.foto_ejemplo.thumbnail.600x.url }}">
         {% endif %}
       </div>
       <div class="modal-footer">
@@ -195,8 +195,9 @@ $(document).ready(function(){
               {% endfor %}
             </ul>
             {% for title, foto in object.fotos %}
-                <div id="foto{{ forloop.counter }}" class="col s12 acta-container">
-                    <img id="target{{ forloop.counter }}" src="{{ foto.thumbnail.960x.url }}">
+	        <div id="foto{{ forloop.counter }}" class="col s12 acta-container">
+                    <img crossorigin="anonymous" id="target{{ forloop.counter }}" src="{{ foto.thumbnail.960x.url }}">
+		    
                     <script>
                     new Darkroom('#target{{ forloop.counter }}', {
                       plugins: {

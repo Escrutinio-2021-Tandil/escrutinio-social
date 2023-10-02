@@ -47,7 +47,7 @@ tr.partido > td.dato {
 
 /* Datos para opciones. */
 tr.fila_detalle {
-    display:none;
+    /* display:none; */
 }
 
 td.opcion {

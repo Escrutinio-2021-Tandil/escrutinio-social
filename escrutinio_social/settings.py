@@ -206,13 +206,13 @@ else:
     STATICFILES_AWS_LOCATION = 'static'
     STATICFILES_STORAGE = 'escrutinio_social.storages.StaticStorage'
 
-    STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, STATICFILES_AWS_LOCATION)
+    STATIC_URL = os.getenv('STATIC_URL', '{}/{}/'.format(AWS_S3_ENDPOINT_URL, STATICFILES_AWS_LOCATION))
     STATIC_ROOT = 'static/'
 
     MEDIAFILES_AWS_LOCATION = 'media'
     DEFAULT_FILE_STORAGE = 'escrutinio_social.storages.MediaStorage'
 
-    MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, MEDIAFILES_AWS_LOCATION)
+    MEDIA_URL = os.getenv('MEDIA_URL', '{}/{}/'.format(AWS_S3_ENDPOINT_URL, MEDIAFILES_AWS_LOCATION))
     MEDIA_ROOT = 'media/'
 
 LOGIN_URL = 'login'
@@ -446,13 +446,13 @@ URL_ARCHIVO_IMPORTAR_CORREO[SLUG_CATEGORIA_PRESI_Y_VICE] = 'https://sheets.googl
 URL_ARCHIVO_IMPORTAR_CORREO[SLUG_CATEGORIA_GOB_Y_VICE_PBA] = 'https://sheets.googleapis.com/v4/spreadsheets/10GW6KVlORVor9HRbhmr9EtzuYEqlFD7mJmxyNG7LQCs/values/A:XX'
 
 # Código de partidos principales para validaciones.
-CODIGO_PARTIDO_NOSOTROS = '136'
-CODIGO_PARTIDO_ELLOS = '135'
-CODIGO_PARTIDO_NOSOTROS_BA = '136'
-CODIGO_PARTIDO_ELLOS_BA = '135'
+CODIGO_PARTIDO_NOSOTROS = '132'
+CODIGO_PARTIDO_ELLOS = '134'
+CODIGO_PARTIDO_NOSOTROS_BA = '132'
+CODIGO_PARTIDO_ELLOS_BA = '134'
 
 # Número del Distrito Provincia de Buenos Aires
-DISTRITO_PBA = '2'
+DISTRITO_PBA = '1'
 
 # Cada cuánto tiempo actualizar el campo last_seen de un Fiscal.
 LAST_SEEN_UPDATE_INTERVAL = 2 * 60  # en segundos.
@@ -481,7 +481,7 @@ ME_OPCION_GEN = 'GENERALES'
 
 # Seteamos el modo de elección; la manera en que visualización de porcentajes de
 # votos de la elección. Las opciones posibles son: ME_OPCION_PASO y ME_OPCION_GEN
-MODO_ELECCION = ME_OPCION_GEN
+MODO_ELECCION = ME_OPCION_PASO
 
 MC_STATUS_CHOICE = Choices(
     # Cargas parcial divergentes sin consolidar

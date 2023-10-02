@@ -20,7 +20,7 @@
     <div class="modal-content">
       <h4>Reportar problema en la imagen</h4>
       {% csrf_token %}
-      <input type="hidden" name="url_back" value="{{ request.path | https }}"/>
+      <input type="hidden" name="url_back" value="{{ request.path }}"/>
       {% form form=form_problema %}
       {% endform %}
       <div id="errores-problema" class="row error">

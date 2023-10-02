@@ -6,7 +6,17 @@ from elecciones.views import StaffOnlyMixing
 from elecciones.models import Mesa
 from django.contrib.auth.decorators import user_passes_test, login_required
 
+from django import template
+
+register = template.Library()
+
 NO_PERMISSION_REDIRECT = 'permission-denied'
+
+
+@register.filter
+def https(value):
+    return value.replace("http://", "https://")
+
 
 class ProblemaCreate(StaffOnlyMixing, CreateView):
     model = Problema

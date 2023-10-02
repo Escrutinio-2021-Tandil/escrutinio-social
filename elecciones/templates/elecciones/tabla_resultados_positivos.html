@@ -33,14 +33,15 @@
   </tr>
   {% if fila.detalle.items|length > 1 %}
     {% for op, v in fila.detalle.items %}
-      <tr class="partido_{{partido.id}}_detalle fila_detalle">
+      <tr class="partido_{{partido.id}}_detalle fila_detalle" style="display: table-row !important;">
         <td class="opcion">{{op}}</td>
         {% if incluir_votos %}
           <td class="dato_entero">{{v.votos}}</td>
           <td><!-- votos de partido !--></td>
         {% endif %}
         <td class="dato">{{v.porcentaje}}%</td>
-        <td><!-- porcentajes de partido !--></td>
+        <td class="dato">{{v.porcentaje_validos}}%</td>
+	<td><!-- porcentajes de partido !--></td>
         {% if resultados.proyectado %}
           <td>-</td>
         {% endif %}

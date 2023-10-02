@@ -82,7 +82,7 @@
         </ul>
         {% for title, foto in mesa_seleccionada.fotos %}
         <div id="foto{{ forloop.counter }}" class="col s12 acta-container">
-            <img id="target{{ forloop.counter }}" src="{{ foto.thumbnail.960x.url }}">
+            <img crossorigin="anonymous" id="target{{ forloop.counter }}" src="{{ foto.thumbnail.960x.url }}">
             <script>
                 new Darkroom('#target{{ forloop.counter }}', {
                     plugins: {

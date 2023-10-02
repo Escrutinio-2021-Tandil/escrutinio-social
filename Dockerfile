@@ -33,4 +33,4 @@ RUN . activate && pip install -U pip wheel && pip install --no-cache-dir -r /req
 WORKDIR /src
 COPY . .
 
-CMD ["gunicorn", "escrutinio_social.wsgi"]
+CMD ["gunicorn", "-w", "3", "--threads", "8", "escrutinio_social.wsgi"]

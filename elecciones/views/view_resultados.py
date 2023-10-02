@@ -35,6 +35,11 @@ from django import template
 
 register = template.Library()
 
+
+@register.filter
+def multiply_percentages(value, arg):
+    return value * arg / 100
+
 @register.filter
 def https(value):
     return value.replace("http://", "https://")
